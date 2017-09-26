@@ -136,10 +136,10 @@ var brfv4Example = {
 					box.classList.add("facebox-" + i);
 					document.body.appendChild(box);
 				}
-				box.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x - 50 + "px";
-				box.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y - 50 + "px";
-				box.style.height = face.bounds.height - 50 + "px";
-				box.style.width = face.bounds.width - 50 + "px";
+				box.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
+				box.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + "px";
+				box.style.height = face.bounds.height + "px";
+				box.style.width = face.bounds.width + "px";
 				box.style.display = "block";
 				/*var box2 = document.querySelector(".facebox2-" + i);
 				if (!box2) {
