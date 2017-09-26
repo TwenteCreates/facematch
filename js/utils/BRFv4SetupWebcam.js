@@ -46,9 +46,9 @@
 							width: width,
 							height: height,
 							frameRate: fps,
-							id: id
-							// facingMode: "environment"
+							facingMode: { exact: "environment" }
 						}};
+						console.log(webcam);
 						webcam.onCameraReady	= callback;
 				
 						webcam.startStream();
