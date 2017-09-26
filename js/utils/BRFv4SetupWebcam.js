@@ -24,12 +24,35 @@
 
 		trace("webcam.setupStream: isPlaying: " + webcam.isPlaying);
 
-		webcam.video			= video;
-		// webcam.constraints		= {video: { width: width, height: height, frameRate: fps }};
-		webcam.constraints		= {video: { width: width, height: height, frameRate: fps, facingMode: "environment" }};
-		webcam.onCameraReady	= callback;
+		// alert(JSON.stringify(webcam.constraints.video));
 
-		webcam.startStream();
+		// alert(webcam.constraints.video.facingMode);
+		
+					navigator.mediaDevices.enumerateDevices().then(function (devices) {
+						var id;
+						for(var i = 0; i < devices.length; i ++){
+							var device = devices[i];
+							if (device.kind === 'videoinput') {
+								var option = document.createElement('option');
+								option.value = device.deviceId;
+								option.text = device.label || 'camera ' + (i + 1);
+								id = option.value;
+							}
+						};
+						
+						webcam.video			= video;
+						// webcam.constraints		= {video: { width: width, height: height, frameRate: fps }};
+						webcam.constraints		= {video: {
+							width: width,
+							height: height,
+							frameRate: fps,
+							id: id
+							// facingMode: "environment"
+						}};
+						webcam.onCameraReady	= callback;
+				
+						webcam.startStream();
+					});
 	};
 
 	webcam.startStream = function() {
@@ -91,22 +114,6 @@
 		} else {
 
 			trace("webcam.onStreamDimensionsAvailable: " + webcam.video.videoWidth + "x" + webcam.video.videoHeight);
-
-			// alert(JSON.stringify(webcam.constraints.video));
-
-			alert(webcam.constraints.video.facingMode);
-
-			navigator.mediaDevices.enumerateDevices().then(function (devices) {
-				for(var i = 0; i < devices.length; i ++){
-					var device = devices[i];
-					if (device.kind === 'videoinput') {
-						var option = document.createElement('option');
-						option.value = device.deviceId;
-						option.text = device.label || 'camera ' + (i + 1);
-						alert(option.value + " - " + option.text);
-					}
-				};
-			});
 
 			// Now we know the dimensions of the stream. So tell the app, the camera is ready.
 			webcam.isPlaying = true;
