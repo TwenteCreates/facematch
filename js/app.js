@@ -382,8 +382,14 @@ function speakSentence() {
 		sentence += name + " is present in the image whose age is between ";
 	}
 	sentence += age2 + " and " + age1;
-	sentence += ". He is " + gender + " and looks " + smiling;
+	sentence += ". " + name + " is " + gender + " and looks " + smiling;
+	if (company == "unknown") {
+		sentence += ".";
+	} else {
+		sentence += ". He is " + position + " at " + company + ".";
+	}
 	alert(sentence);
+	responsiveVoice.speak(sentence);
 }
 
 function putAPI() {
