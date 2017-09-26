@@ -227,7 +227,11 @@ setInterval(function() {
 
 				var firstName = name.split(" ")[0];
 				var lastName = name.split(" ")[1];
-				var linkedInlink = "https://www.linkedin.com/pub/dir/" + firstName + "/" + lastName;
+				if (linkedin == "unknown") {
+					var linkedInlink = "https://www.linkedin.com/pub/dir/" + firstName + "/" + lastName;	
+				} else {
+					var linkedInlink = linkedin;
+				}
 				document.querySelector(".linkedinlink").setAttribute("href", linkedInlink);
 				
 				var info = document.querySelector(".infofacebox-" + i);
@@ -237,7 +241,11 @@ setInterval(function() {
 					info.classList.add("infofacebox-" + i);
 					document.body.appendChild(info);
 				}
-				info.innerHTML = name;
+				if (company == "unknown") {
+					info.innerHTML = name;
+				} else {
+					info.innerHTML = name + "<br>" + position + ", " + company;
+				}
 				// info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
 				// info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + face.bounds.height + "px";
 				info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
@@ -272,6 +280,9 @@ var age1 = "";
 var age2 = "";
 var beard = "";
 var gender = "";
+var position = "";
+var linkedin = "unknown";
+var company = "";
 
 function doCamera() {
 	var image = _imageData.toDataURL("image/jpeg");
@@ -291,10 +302,50 @@ function doCamera() {
 				// accuracy = "100%";
 				document.querySelector(".linkedinlink").style.display = "none";
 			} else {
-				name = result.FaceMatches[0].Face.ExternalImageId.replace(/_/g, " ");
+				name = result.FaceMatches[0].Face.ExternalImageId.replace(/_/g, " ").trim().replace(/\s\s+/g, ' ');
 				document.querySelector(".linkedinlink").style.display = "block";
 				// accuracy = parseInt(result.FaceMatches[0].Face.Confidence) + "%";
 			}
+			switch (name) {
+				case "Anand Chowdhary":
+					position = "CEO/Product";
+					company = "Oswald Foundation";
+					linkedin = "https://www.linkedin.com/in/anandchowdhary/";
+					break;
+				case "mohit ahuja":
+					position = "Student";
+					company = "University of Twente";
+					linkedin = "https://www.linkedin.com/in/ahujamoh/";
+					break;
+				case "Hendrik Koopmans":
+					position = "Student Entrepreneur";
+					company = "Novel-T";
+					linkedin = "https://www.linkedin.com/in/hendrik-koopmans-43247262/";
+					break;
+				case "Julian Sotscheck":
+					position = "Jr. Business Developer";
+					company = "Novel-T";
+					linkedin = "https://www.linkedin.com/in/julian-sotscheck-63949b139/";
+					break;
+				case "Rogier Ikink":
+					position = "20Creathon Manager";
+					company = "Novel-T";
+					break;
+				case "Jose Manuel Rodriguez Martinez":
+					position = "Business Development";
+					company = "Amazon Web Services";
+					linkedin = "https://www.linkedin.com/in/jmrven/";
+					break;
+				case "Mike Verkouter":
+					position = "CEO/Product";
+					company = "Oswald Foundation";
+					linkedin = "https://www.linkedin.com/in/mikeverkouter/";
+					break;
+				default:
+					position = "Unknown";
+					company = "Unknown";
+					break;
+			};
 			document.querySelector(".bounder").style.left = document.querySelector("#_drawing").getBoundingClientRect().width * result.FaceDetails.BoundingBox.Left + "px";
 			document.querySelector(".bounder").style.top = document.querySelector("#_drawing").getBoundingClientRect().height * result.FaceDetails.BoundingBox.Top + "px";
 			document.querySelector(".bounder").style.width = result.FaceDetails.BoundingBox.Width * document.querySelector("#_drawing").getBoundingClientRect().width + "px";
@@ -353,3 +404,9 @@ function putAPI() {
 		}
 	});
 }
+
+if (!String.prototype.trim) {
+	String.prototype.trim = function () {
+	  return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+	};
+  }
