@@ -121,6 +121,12 @@ var brfv4Example = {
 	
 			var faces = brfManager.getFaces();
 
+			var p0              = new brfv4.Point();
+			var p1              = new brfv4.Point();
+		
+			var setPoint        = brfv4.BRFv4PointUtils.setPoint;
+			var calcDistance    = brfv4.BRFv4PointUtils.calcDistance;
+
 			var nofaces = 0;
 			for(var i = 0; i < faces.length; i++) {
 	
@@ -130,6 +136,42 @@ var brfv4Example = {
 					document.querySelector(".facebox").style.display = "none";
 					document.querySelector(".infofacebox").style.display = "none";
 				}
+
+				// Smile Detection
+
+                setPoint(face.vertices, 48, p0); // mouth corner left
+                setPoint(face.vertices, 54, p1); // mouth corner right
+
+                var mouthWidth = calcDistance(p0, p1);
+
+                setPoint(face.vertices, 39, p1); // left eye inner corner
+                setPoint(face.vertices, 42, p0); // right eye outer corner
+
+                var eyeDist = calcDistance(p0, p1);
+                var smileFactor = mouthWidth / eyeDist;
+
+                smileFactor -= 1.40; // 1.40 - neutral, 1.70 smiling
+
+                if(smileFactor > 0.25) smileFactor = 0.25;
+                if(smileFactor < 0.00) smileFactor = 0.00;
+
+                smileFactor *= 4.0;
+
+                if(smileFactor < 0.0) { smileFactor = 0.0; }
+				if(smileFactor > 1.0) { smileFactor = 1.0; }
+				
+				var smiling = "neutral";
+				if (smileFactor > 0.5) {
+					smiling = "kinda happy";
+				}
+				if (smileFactor > 0.8) {
+					smiling = "very happy";
+				}
+				document.querySelector(".smilingfac").innerHTML = smiling;
+
+				var color =
+				(((0xff * (1.0 - smileFactor) & 0xff) << 16)) +
+				(((0xff * smileFactor) & 0xff) << 8);
 	
 				var box = document.querySelector(".facebox-" + i);
 				if (!box) {
@@ -184,8 +226,13 @@ var brfv4Example = {
 	
 					// Face tracking results: 68 facial feature points.
 	
-					draw.drawTriangles(	face.vertices, face.triangles, false, 0.3, 0xffffff, 0.35);
-					draw.drawVertices(	face.vertices, 1.5, false, 0xffffff, 0.3);
+					// draw.drawTriangles(	face.vertices, face.triangles, false, 0.3, 0xffffff, 0.35);
+					// draw.drawVertices(	face.vertices, 1.5, false, 0xffffff, 0.3);
+
+					// Face Tracking results: 68 facial feature points.
+
+					draw.drawTriangles( face.vertices, face.triangles, false, 1.0, color, 0.4);
+					draw.drawVertices(  face.vertices, 2.0, false, color, 0.4);
 	
 				}
 			}
