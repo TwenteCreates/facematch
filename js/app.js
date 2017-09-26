@@ -138,10 +138,10 @@ var brfv4Example = {
 				}
 				box.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x - 50 + "px";
 				box.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y - 50 + "px";
-				box.style.height = face.bounds.height + 100 + "px";
-				box.style.width = face.bounds.width + 100 + "px";
+				box.style.height = face.bounds.height + 10 + "px";
+				box.style.width = face.bounds.width + 10 + "px";
 				box.style.display = "block";
-				var box2 = document.querySelector(".facebox2-" + i);
+				/*var box2 = document.querySelector(".facebox2-" + i);
 				if (!box2) {
 					box2 = document.createElement("div");
 					box2.classList.add("facebox2");
@@ -152,7 +152,7 @@ var brfv4Example = {
 				box2.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y - 50 + "px";
 				box2.style.height = face.bounds.height + 100 + "px";
 				box2.style.width = face.bounds.width + 100 + "px";
-				box2.style.display = "block";
+				box2.style.display = "block";*/
 				
 				var info = document.querySelector(".infofacebox-" + i);
 				if (!info) {

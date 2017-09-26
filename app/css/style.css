@@ -1,3 +1,19 @@
 body {
   background: #000;
   color: #fff; }
+
+canvas, video, #_content {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0; }
+
+video {
+  display: none; }
+
+.facebox, .facebox2, .infobox {
+  position: fixed;
+  display: none !important;
+  background: rgba(255, 255, 255, 0.25); }
