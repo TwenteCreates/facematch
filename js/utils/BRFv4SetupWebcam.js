@@ -94,6 +94,8 @@
 
 			// alert(JSON.stringify(webcam.constraints.video));
 
+			alert(webcam.constraints.video.facingMode);
+
 			navigator.mediaDevices.enumerateDevices().then(function (devices) {
 				for(var i = 0; i < devices.length; i ++){
 					var device = devices[i];
