@@ -137,7 +137,7 @@ var brfv4Example = {
 					document.body.appendChild(box);
 				}
 				box.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
-				box.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + "px";
+				box.style.top = document.querySelector("#_drawing").getBoundingClientRect().y - 20 + face.bounds.y + "px";
 				box.style.height = face.bounds.height + "px";
 				box.style.width = face.bounds.width + "px";
 				box.style.display = "block";
@@ -164,7 +164,7 @@ var brfv4Example = {
 				info.innerHTML = "Name: Sample Name<br>Age: 23&ndash;30";
 				// info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
 				// info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + face.bounds.height + "px";
-				info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
+				info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + 30 + "px";
 				info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.height + 50 + face.bounds.y + "px";
 				info.style.display = "block";
 	
