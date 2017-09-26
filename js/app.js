@@ -416,3 +416,25 @@ if (!String.prototype.trim) {
 	  return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
 	};
   }
+
+function surrAPI() {
+	var image = _imageData.toDataURL("image/jpeg");
+	$.ajax({
+		url: "https://api.facematch.gq/api/get_metadata",
+		type: "POST",
+		data: {
+			imageURI: image
+		},
+		success: function(result) {
+			console.log(result);
+			var p = "Your surroundings may contain ";
+			for (var i = 0; i < result.Labels.length; i++) {
+				p += result.Labels[i].Name + ", ";
+			}
+			responsiveVoice.speak(p);
+		},
+		complete: function() {
+			console.log("request sent");
+		}
+	});
+}
