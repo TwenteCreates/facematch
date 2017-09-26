@@ -13,11 +13,15 @@ canvas, video, #_content {
 video {
   display: none; }
 
-.facebox, .facebox2, .infobox {
+.facebox, .facebox2, .infofacebox {
   position: fixed; }
 
 .facebox {
   border: 3px solid rgba(255, 255, 255, 0.5); }
+
+.infofacebox {
+  background: white;
+  z-index: 2; }
 
 .bottom-bar {
   position: fixed;

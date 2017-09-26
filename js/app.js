@@ -162,7 +162,7 @@ var brfv4Example = {
 					document.body.appendChild(info);
 				}
 				info.innerHTML = "Name: Sample Name<br>Age: 23&ndash;30";
-				info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + face.bounds.width + 50 + "px";
+				info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + face.bounds.width - 50 + "px";
 				info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + "px";
 				info.style.display = "block";
 	
