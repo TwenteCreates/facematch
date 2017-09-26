@@ -74,7 +74,6 @@ var brfv4Example = {
 	
 		loader.loadExample = function (filesToLoad, callback) {
 			function onComplete(event) {
-				alert("A");
 				if (callback) callback();
 			}
 			var queue = loader.queueExamples = new createjs.LoadQueue(true);

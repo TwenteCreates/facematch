@@ -26,6 +26,7 @@
 
 		webcam.video			= video;
 		webcam.constraints		= {video: { width: width, height: height, frameRate: fps }};
+		// webcam.constraints		= {video: { width: width, height: height, frameRate: fps, facingMode: "environment" }};
 		webcam.onCameraReady	= callback;
 
 		webcam.startStream();
@@ -90,6 +91,20 @@
 		} else {
 
 			trace("webcam.onStreamDimensionsAvailable: " + webcam.video.videoWidth + "x" + webcam.video.videoHeight);
+
+			// alert(JSON.stringify(webcam.constraints.video));
+
+			navigator.mediaDevices.enumerateDevices().then(function (devices) {
+				for(var i = 0; i < devices.length; i ++){
+					var device = devices[i];
+					if (device.kind === 'videoinput') {
+						var option = document.createElement('option');
+						option.value = device.deviceId;
+						option.text = device.label || 'camera ' + (i + 1);
+						alert(option.value + " - " + option.text);
+					}
+				};
+			});
 
 			// Now we know the dimensions of the stream. So tell the app, the camera is ready.
 			webcam.isPlaying = true;
