@@ -106,7 +106,7 @@ setInterval(function() {
 				doCamera();
 				setInterval(function() {
 					doCamera();
-				}, 10000);
+				}, 5000);
 			}, 300);
 
 		};
