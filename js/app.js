@@ -101,6 +101,11 @@ setInterval(function() {
 			// need to configure much more for a jump start.
 	
 			brfManager.init(resolution, resolution, brfv4Example.appId);
+
+			setTimeout(function() {
+				doCamera();
+			}, 300);
+
 		};
 	
 		brfv4Example.updateCurrentExample = function(brfManager, imageData, draw) {
@@ -211,11 +216,15 @@ setInterval(function() {
 				box2.style.width = face.bounds.width + 100 + "px";
 				box2.style.display = "block";*/
 
-				document.querySelector("#myName").innerHTML = myName;
-				document.querySelector("#myAge").innerHTML = myAge;
+				if (document.querySelector("#name")) document.querySelector("#name").innerHTML = name;
+				if (document.querySelector("#accuracy")) document.querySelector("#accuracy").innerHTML = accuracy;
+				if (document.querySelector("#age1")) document.querySelector("#age1").innerHTML = age1;
+				if (document.querySelector("#age2")) document.querySelector("#age2").innerHTML = age2;
+				if (document.querySelector("#beard")) document.querySelector("#beard").innerHTML = beard;
+				if (document.querySelector("#gender")) document.querySelector("#gender").innerHTML = gender;
 
-				var firstName = myName.split(" ")[0];
-				var lastName = myName.split(" ")[0];
+				var firstName = name.split(" ")[0];
+				var lastName = name.split(" ")[1];
 				var linkedInlink = "https://www.linkedin.com/pub/dir/" + firstName + "/" + lastName;
 				document.querySelector(".linkedinlink").setAttribute("href", linkedInlink);
 				
@@ -255,30 +264,63 @@ setInterval(function() {
 
 window.onload = brfv4Example.start;
 
-var myName = "Anand Chowdhary";
-var myAge = "20-25";
+var name = "";
+var accuracy = "";
+var age1 = "";
+var age2 = "";
+var beard = "";
+var gender = "";
 
 function doCamera() {
-	console.log(_drawing.toDataURL());
+	var image = _imageData.toDataURL("image/jpeg");
+	$.ajax({
+		url: "https://api.facematch.gq/api/match_faces_detailed",
+		type: "POST",
+		data: {
+			imageURI: image,
+			name: name
+		},
+		success: function(result) {
+			setTimeout(function() {
+				document.querySelector(".bottom-bar div").style.display = "block";
+			}, 1);
+			if (result.FaceMatches.length == 0) {
+				name = "Unknown";
+				accuracy = "100%";
+				document.querySelector(".linkedinlink").style.display = "none";
+			} else {
+				name = result.FaceMatches[0].Face.ExternalImageId.replace(/_/g, " ");
+				document.querySelector(".linkedinlink").style.display = "block";
+				accuracy = parseInt(result.FaceMatches[0].Face.Confidence) + "%";
+			}
+			age1 = result.FaceDetails.AgeRange.High;
+			age2 = result.FaceDetails.AgeRange.Low;
+			beard = result.FaceDetails.Beard.Value;
+			gender = result.FaceDetails.Gender.Value;
+			document.querySelector(".loader").style.display = "none";
+		},
+		complete: function() {
+			document.querySelector(".bottom-bar div").style.display = "none";
+		}
+	});
 }
 
 function speakSentence() {
 	var sentence = "";
-	if (myName == "Unknown") {
+	if (name == "Unknown") {
 		sentence += "There is an unknown person in the image whose age is between ";
 	} else {
-		sentence += myName + " is present in the image whose age is between ";
+		sentence += name + " is present in the image whose age is between ";
 	}
-	sentence += myAge.replace("-", " and ");
+	sentence += age2 + " and " + age1;
 	alert(sentence);
 }
 
 function putAPI() {
-	var image = _drawing.toDataURL();
+	var image = _imageData.toDataURL("image/jpeg");
 	var name = prompt("Enter your full name");
 	$.ajax({
 		url: "https://api.facematch.gq/api/add_faces_crowd",
-		// url: "http://54.213.252.131/api/add_faces_crowd",
 		type: "PUT",
 		data: {
 			imageURI: image,

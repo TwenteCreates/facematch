@@ -40,3 +40,32 @@ video {
   .bottom-bar a {
     text-decoration: none;
     color: inherit; }
+
+.loader {
+  position: fixed;
+  background: #000;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  padding-top: 30vh;
+  box-sizing: border-box; }
+  .loader i {
+    font-size: 500%;
+    animation: rotate 1s linear infinite; }
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+.logo {
+  position: fixed;
+  z-index: 100;
+  top: 20px;
+  left: 20px; }
+  .logo img {
+    height: 30px;
+    vertical-align: middle; }

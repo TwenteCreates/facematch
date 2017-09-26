@@ -49,6 +49,16 @@
 
 		<div id="_wrapper">
 
+			<div class="logo">
+				<img alt="FaceMatch" src="/app/icons/mstile-144x144.png">
+				FaceMatch
+			</div>
+
+			<div class="loader">
+				<i class="ion ion-md-refresh"></i>
+				<p>Loading . . .</p>
+			</div>
+
 			<div class="bg"></div>
 
 			<div id="_content">
@@ -62,9 +72,9 @@
 
 			<div class="bottom-bar" style="font-size: 90%; line-height: 1.75">
 				<div style="float: left; width: 49%">
-					<div style="font-size: 110%"><span id="myName"></span></div>
-					<div style="opacity: 0.8">Male</div>
-					<div style="opacity: 0.8">Age <span id="myAge"></span> years</div>
+					<div style="font-size: 110%"><span id="name"></span> (<span id="accuracy"></span>)</div>
+					<div style="opacity: 0.8"><span id="gender"></span></div>
+					<div style="opacity: 0.8">Age <span id="age2"></span>&ndash;<span id="age1"></span> years</div>
 					<div style="opacity: 0.8">Looks <span class="smilingfac"></span></div>
 					<div style="opacity: 0.8"><a class="linkedinlink" href="#"><i class="ion ion-logo-linkedin"></i> &nbsp;LinkedIn profile</a></div>
 				</div>
