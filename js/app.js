@@ -277,7 +277,8 @@ function putAPI() {
 	var image = _drawing.toDataURL();
 	var name = prompt("Enter your full name");
 	$.ajax({
-		url: "http://54.213.252.131/api/add_faces_crowd",
+		url: "https://api.facematch.gq/api/add_faces_crowd",
+		// url: "http://54.213.252.131/api/add_faces_crowd",
 		type: "PUT",
 		data: {
 			imageURI: image,
