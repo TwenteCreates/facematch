@@ -83,7 +83,7 @@ var brfv4Example = {
 		};
 	
 	})();
-	
+	var smiling = "neutral";
 var p = 0;
 setInterval(function() {
 	if (p == 1) {
@@ -104,6 +104,9 @@ setInterval(function() {
 
 			setTimeout(function() {
 				doCamera();
+				setInterval(function() {
+					doCamera();
+				}, 10000);
 			}, 300);
 
 		};
@@ -177,8 +180,7 @@ setInterval(function() {
 
                 if(smileFactor < 0.0) { smileFactor = 0.0; }
 				if(smileFactor > 1.0) { smileFactor = 1.0; }
-				
-				var smiling = "neutral";
+			
 				if (smileFactor > 0.5) {
 					smiling = "kinda happy";
 				}
@@ -217,7 +219,7 @@ setInterval(function() {
 				box2.style.display = "block";*/
 
 				if (document.querySelector("#name")) document.querySelector("#name").innerHTML = name;
-				if (document.querySelector("#accuracy")) document.querySelector("#accuracy").innerHTML = accuracy;
+				// if (document.querySelector("#accuracy")) document.querySelector("#accuracy").innerHTML = accuracy;
 				if (document.querySelector("#age1")) document.querySelector("#age1").innerHTML = age1;
 				if (document.querySelector("#age2")) document.querySelector("#age2").innerHTML = age2;
 				if (document.querySelector("#beard")) document.querySelector("#beard").innerHTML = beard;
@@ -235,7 +237,7 @@ setInterval(function() {
 					info.classList.add("infofacebox-" + i);
 					document.body.appendChild(info);
 				}
-				info.innerHTML = "Anand Chowdhary";
+				info.innerHTML = name;
 				// info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
 				// info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + face.bounds.height + "px";
 				info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
@@ -265,7 +267,7 @@ setInterval(function() {
 window.onload = brfv4Example.start;
 
 var name = "";
-var accuracy = "";
+// var accuracy = "";
 var age1 = "";
 var age2 = "";
 var beard = "";
@@ -286,13 +288,29 @@ function doCamera() {
 			}, 1);
 			if (result.FaceMatches.length == 0) {
 				name = "Unknown";
-				accuracy = "100%";
+				// accuracy = "100%";
 				document.querySelector(".linkedinlink").style.display = "none";
 			} else {
 				name = result.FaceMatches[0].Face.ExternalImageId.replace(/_/g, " ");
 				document.querySelector(".linkedinlink").style.display = "block";
-				accuracy = parseInt(result.FaceMatches[0].Face.Confidence) + "%";
+				// accuracy = parseInt(result.FaceMatches[0].Face.Confidence) + "%";
 			}
+			document.querySelector(".bounder").style.left = document.querySelector("#_drawing").getBoundingClientRect().width * result.FaceDetails.BoundingBox.Left + "px";
+			document.querySelector(".bounder").style.top = document.querySelector("#_drawing").getBoundingClientRect().height * result.FaceDetails.BoundingBox.Top + "px";
+			document.querySelector(".bounder").style.width = result.FaceDetails.BoundingBox.Width * document.querySelector("#_drawing").getBoundingClientRect().width + "px";
+			document.querySelector(".bounder").style.height = result.FaceDetails.BoundingBox.Height * document.querySelector("#_drawing").getBoundingClientRect().height + "px";
+			document.querySelector(".bounder").style.display = "block";
+			document.querySelector(".bounder").style.opacity = "1";
+			document.querySelector(".bounder").style.transform = "scale(1)";
+			setTimeout(function() {
+				document.querySelector(".bounder").style.transform = "scale(1.5)";
+				document.querySelector(".bounder").style.opacity = "0";
+			}, 1);
+			setTimeout(function() {
+				document.querySelector(".bounder").style.display = "none";
+				document.querySelector(".bounder").style.transform = "scale(1)";
+				document.querySelector(".bounder").style.opacity = "1";
+			}, 501);
 			age1 = result.FaceDetails.AgeRange.High;
 			age2 = result.FaceDetails.AgeRange.Low;
 			beard = result.FaceDetails.Beard.Value;
@@ -313,6 +331,7 @@ function speakSentence() {
 		sentence += name + " is present in the image whose age is between ";
 	}
 	sentence += age2 + " and " + age1;
+	sentence += ". He is " + gender + " and looks " + smiling;
 	alert(sentence);
 }
 

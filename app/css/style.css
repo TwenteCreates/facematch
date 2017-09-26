@@ -56,6 +56,13 @@ video {
     font-size: 500%;
     animation: rotate 1s linear infinite; }
 
+.bounder {
+  position: fixed;
+  border: 10px solid white;
+  border-radius: 100%;
+  transition: 0.5s;
+  z-index: 5; }
+
 @keyframes rotate {
   from {
     transform: rotate(0deg); }
