@@ -26,7 +26,7 @@
 
 		webcam.video			= video;
 		// webcam.constraints		= {video: { width: width, height: height, frameRate: fps }};
-		webcam.constraints		= {video: { width: width, height: height, frameRate: fps, facingMode: "user" }};
+		webcam.constraints		= {video: { width: width, height: height, frameRate: fps, facingMode: "environment" }};
 		webcam.onCameraReady	= callback;
 
 		webcam.startStream();
