@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="76px" height="78px" viewBox="0 0 76 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2">
+            <g id="Group">
+                <path d="M32,4 C47.4,4 60,16.6 60,32 C60,47.4 47.4,60 32,60 C16.6,60 4,47.4 4,32 C4,16.6 16.6,4 32,4 L32,4 Z M0,32 C0,49.7 14.3,64 32,64 C49.7,64 64,49.7 64,32 C64,14.3 49.7,0 32,0 C14.3,0 0,14.3 0,32 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+                <circle id="Oval" fill="#000000" fill-rule="nonzero" cx="20" cy="26.9" r="5"></circle>
+                <circle id="Oval" fill="#000000" fill-rule="nonzero" cx="44" cy="26.9" r="5"></circle>
+                <path d="M42,40.5 C39.3,42.8 35.8,44.1 32,44.1 C28.2,44.1 24.7,42.7 22,40.5" id="Shape" stroke="#000000" stroke-width="4" stroke-linecap="round"></path>
+            </g>
+            <rect id="Rectangle" fill="#000000" transform="translate(63.541706, 65.159814) rotate(-45.000000) translate(-63.541706, -65.159814) " x="60.513902" y="50.0844964" width="6.05560797" height="30.1506351" rx="3.02780398"></rect>
+        </g>
+    </g>
+</svg>
