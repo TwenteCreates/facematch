@@ -7,12 +7,70 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 
+		<style>
+			body { background: #000 }
+			.facebox {
+				position: absolute;
+				background: url("jaar.png") no-repeat;
+				background-size: contain;
+				animation: rotate 5s linear infinite;
+				z-index: 5;
+				opacity: 0.3;
+			}
+			.facebox2 {
+				position: absolute;
+				backdrop-filter: brightness(200%);
+				border-radius: 100%;
+				transform: scale(1.1);
+				z-index: 2;
+			}
+			.bg {
+				position: absolute;
+				background: #000;
+				z-index: 1;
+				opacity: 0.5;
+			}
+			@keyframes rotate {
+				from { transform: rotate(0deg); }
+				to { transform: rotate(360deg); }
+			}
+			.infofacebox {
+				color: #fff;
+				position: absolute;
+				font-size: 90%;
+				padding: 15px;
+				border: 2px solid cyan;
+				z-index: 10;
+			}
+		</style>
+
 		<title>FaceMatch</title>
+
+		<script src="js/libs/createjs/preloadjs-0.6.2.min.js"></script>
+		<script src="js/BRFv4Demo.js"></script>
+		<script>
+			window.onload = brfv4Example.start;
+		</script>
 
 	</head>
 
 	<body>
-		<p>FaceMatch</p>
+
+		<div id="_wrapper">
+
+			<div class="bg"></div>
+
+			<div id="_content">
+				<video  id="_webcam"></video>
+				<canvas id="_imageData"></canvas>
+				<canvas id="_faceSub"></canvas>
+				<canvas id="_t3d"></canvas>
+				<canvas id="_f3d"></canvas>
+				<canvas id="_drawing"></canvas>
+			</div>
+
+		</div>
+
 	</body>
 
 </html>
