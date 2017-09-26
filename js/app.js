@@ -84,6 +84,13 @@ var brfv4Example = {
 	
 	})();
 	
+var p = 0;
+setInterval(function() {
+	if (p == 1) {
+		p = 0	;
+	}
+}, 5000);
+
 	(function exampleCode() {
 		"use strict";
 	
@@ -128,6 +135,12 @@ var brfv4Example = {
 			var calcDistance    = brfv4.BRFv4PointUtils.calcDistance;
 
 			var nofaces = 0;
+
+			if (p == 0) {
+				// Call onclick function
+				p = 1;
+			}
+
 			for(var i = 0; i < faces.length; i++) {
 	
 				var face = faces[i];
@@ -231,7 +244,7 @@ var brfv4Example = {
 
 					// Face Tracking results: 68 facial feature points.
 
-					draw.drawTriangles( face.vertices, face.triangles, false, 1.0, color, 0.4);
+					draw.drawTriangles( face.vertices, face.triangles, false, 0.5, color, 0.4);
 					draw.drawVertices(  face.vertices, 2.0, false, color, 0.4);
 	
 				}
@@ -258,4 +271,21 @@ function speakSentence() {
 	}
 	sentence += myAge.replace("-", " and ");
 	alert(sentence);
+}
+
+function putAPI() {
+	var image = _drawing.toDataURL();
+	var name = prompt("Enter your full name");
+	console.log("Name is " + name);
+	$.ajax({
+		url: "http://54.213.252.131/api/add_faces_crowd",
+		type: "PUT",
+		data: {
+			imageURI: image,
+			name: name
+		},
+		success: function(result) {
+			console.log(result);
+		}
+	});
 }
