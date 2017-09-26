@@ -107,10 +107,10 @@ brfv4Example.trace = function(msg, error) {
 
 		draw.clear();
 
-		document.querySelector(".bg").style.left = document.querySelector("#_drawing").getBoundingClientRect().x + "px";
-		document.querySelector(".bg").style.top = document.querySelector("#_drawing").getBoundingClientRect().y + "px";
-		document.querySelector(".bg").style.width = document.querySelector("#_drawing").getBoundingClientRect().width + "px";
-		document.querySelector(".bg").style.height = document.querySelector("#_drawing").getBoundingClientRect().height + "px";
+		// document.querySelector(".bg").style.left = document.querySelector("#_drawing").getBoundingClientRect().x + "px";
+		// document.querySelector(".bg").style.top = document.querySelector("#_drawing").getBoundingClientRect().y + "px";
+		// document.querySelector(".bg").style.width = document.querySelector("#_drawing").getBoundingClientRect().width + "px";
+		// document.querySelector(".bg").style.height = document.querySelector("#_drawing").getBoundingClientRect().height + "px";
 
 		// Face detection results: a rough rectangle used to start the face tracking.
 
@@ -166,7 +166,7 @@ brfv4Example.trace = function(msg, error) {
 			info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + "px";
 			info.style.display = "block";
 
-			document.querySelector(".bg").style.backgroundPosition = document.querySelector("#_drawing").getBoundingClientRect().height + "px";
+			// document.querySelector(".bg").style.backgroundPosition = document.querySelector("#_drawing").getBoundingClientRect().height + "px";
 
 			if( face.state === brfv4.BRFState.FACE_TRACKING_START || face.state === brfv4.BRFState.FACE_TRACKING) {
 
