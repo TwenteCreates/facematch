@@ -126,7 +126,6 @@ var brfv4Example = {
 	
 				var face = faces[i];
 				if (face.state === "state_face_detection") {
-					console.log("no faces");
 					var nofaces = 1;
 					document.querySelector(".facebox").style.display = "none";
 					document.querySelector(".infofacebox").style.display = "none";
@@ -156,6 +155,14 @@ var brfv4Example = {
 				box2.style.height = face.bounds.height + 100 + "px";
 				box2.style.width = face.bounds.width + 100 + "px";
 				box2.style.display = "block";*/
+
+				document.querySelector("#myName").innerHTML = myName;
+				document.querySelector("#myAge").innerHTML = myAge;
+
+				var firstName = myName.split(" ")[0];
+				var lastName = myName.split(" ")[0];
+				var linkedInlink = "https://www.linkedin.com/pub/dir/" + firstName + "/" + lastName;
+				document.querySelector(".linkedinlink").setAttribute("href", linkedInlink);
 				
 				var info = document.querySelector(".infofacebox-" + i);
 				if (!info) {
@@ -187,3 +194,21 @@ var brfv4Example = {
 	})();
 
 window.onload = brfv4Example.start;
+
+var myName = "Anand Chowdhary";
+var myAge = "20-25";
+
+function doCamera() {
+	console.log(_drawing.toDataURL());
+}
+
+function speakSentence() {
+	var sentence = "";
+	if (myName == "Unknown") {
+		sentence += "There is an unknown person in the image whose age is between ";
+	} else {
+		sentence += myName + " is present in the image whose age is between ";
+	}
+	sentence += myAge.replace("-", " and ");
+	alert(sentence);
+}

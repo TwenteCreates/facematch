@@ -37,3 +37,6 @@ video {
   box-sizing: border-box;
   padding: 25px;
   height: 180px; }
+  .bottom-bar a {
+    text-decoration: none;
+    color: inherit; }
