@@ -161,7 +161,7 @@ var brfv4Example = {
 					info.classList.add("infofacebox-" + i);
 					document.body.appendChild(info);
 				}
-				info.innerHTML = "Name: Sample Name<br>Age: 23&ndash;30";
+				info.innerHTML = "Anand Chowdhary";
 				// info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
 				// info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + face.bounds.height + "px";
 				info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + 30 + "px";
@@ -174,8 +174,8 @@ var brfv4Example = {
 	
 					// Face tracking results: 68 facial feature points.
 	
-					draw.drawTriangles(	face.vertices, face.triangles, false, 0.5, 0x00a0ff, 0.35);
-					draw.drawVertices(	face.vertices, 1.5, false, 0x00a0ff, 0.5);
+					draw.drawTriangles(	face.vertices, face.triangles, false, 0.3, 0xffffff, 0.35);
+					draw.drawVertices(	face.vertices, 1.5, false, 0xffffff, 0.3);
 	
 				}
 			}
