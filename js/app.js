@@ -146,8 +146,8 @@ setInterval(function() {
 				var face = faces[i];
 				if (face.state === "state_face_detection") {
 					var nofaces = 1;
-					document.querySelector(".facebox").style.display = "none";
-					document.querySelector(".infofacebox").style.display = "none";
+					if (document.querySelector(".facebox")) document.querySelector(".facebox").style.display = "none";
+					if (document.querySelector(".infofacebox")) document.querySelector(".infofacebox").style.display = "none";
 				}
 
 				// Smile Detection
@@ -276,7 +276,6 @@ function speakSentence() {
 function putAPI() {
 	var image = _drawing.toDataURL();
 	var name = prompt("Enter your full name");
-	console.log("Name is " + name);
 	$.ajax({
 		url: "http://54.213.252.131/api/add_faces_crowd",
 		type: "PUT",
@@ -286,6 +285,9 @@ function putAPI() {
 		},
 		success: function(result) {
 			console.log(result);
+		},
+		complete: function() {
+			console.log("request sent");
 		}
 	});
 }
