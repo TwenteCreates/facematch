@@ -138,8 +138,8 @@ var brfv4Example = {
 				}
 				box.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x - 50 + "px";
 				box.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y - 50 + "px";
-				box.style.height = face.bounds.height + 10 + "px";
-				box.style.width = face.bounds.width + 10 + "px";
+				box.style.height = face.bounds.height - 50 + "px";
+				box.style.width = face.bounds.width - 50 + "px";
 				box.style.display = "block";
 				/*var box2 = document.querySelector(".facebox2-" + i);
 				if (!box2) {
@@ -173,7 +173,7 @@ var brfv4Example = {
 					// Face tracking results: 68 facial feature points.
 	
 					draw.drawTriangles(	face.vertices, face.triangles, false, 0.5, 0x00a0ff, 0.35);
-					draw.drawVertices(	face.vertices, 1.5, false, 0x00a0ff, 0.3);
+					draw.drawVertices(	face.vertices, 1.5, false, 0x00a0ff, 0.5);
 	
 				}
 			}

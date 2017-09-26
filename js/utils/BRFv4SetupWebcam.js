@@ -45,8 +45,7 @@
 						webcam.constraints		= {video: {
 							width: width,
 							height: height,
-							frameRate: fps,
-							facingMode: { exact: "environment" }
+							frameRate: fps
 						}};
 						console.log(webcam);
 						webcam.onCameraReady	= callback;
