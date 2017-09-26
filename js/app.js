@@ -162,8 +162,10 @@ var brfv4Example = {
 					document.body.appendChild(info);
 				}
 				info.innerHTML = "Name: Sample Name<br>Age: 23&ndash;30";
+				// info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
+				// info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + face.bounds.height + "px";
 				info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
-				info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + face.bounds.height + "px";
+				info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + "px";
 				info.style.display = "block";
 	
 				// document.querySelector(".bg").style.backgroundPosition = document.querySelector("#_drawing").getBoundingClientRect().height + "px";
