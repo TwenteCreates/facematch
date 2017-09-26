@@ -120,11 +120,14 @@ var brfv4Example = {
 			// Get all faces. The default setup only tracks one face.
 	
 			var faces = brfManager.getFaces();
-	
+
+			var nofaces = 0;
 			for(var i = 0; i < faces.length; i++) {
 	
 				var face = faces[i];
 				if (face.state === "state_face_detection") {
+					console.log("no faces");
+					var nofaces = 1;
 					document.querySelector(".facebox").style.display = "none";
 					document.querySelector(".infofacebox").style.display = "none";
 				}
@@ -140,7 +143,7 @@ var brfv4Example = {
 				box.style.top = document.querySelector("#_drawing").getBoundingClientRect().y - 20 + face.bounds.y + "px";
 				box.style.height = face.bounds.height + "px";
 				box.style.width = face.bounds.width + "px";
-				box.style.display = "block";
+				if (nofaces === 0) box.style.display = "block";
 				/*var box2 = document.querySelector(".facebox2-" + i);
 				if (!box2) {
 					box2 = document.createElement("div");
@@ -164,9 +167,9 @@ var brfv4Example = {
 				info.innerHTML = "Anand Chowdhary";
 				// info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
 				// info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.y + face.bounds.height + "px";
-				info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + 30 + "px";
-				info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.height + 50 + face.bounds.y + "px";
-				info.style.display = "block";
+				info.style.left = document.querySelector("#_drawing").getBoundingClientRect().x + face.bounds.x + "px";
+				info.style.top = document.querySelector("#_drawing").getBoundingClientRect().y + face.bounds.height + 25 + face.bounds.y + "px";
+				if (nofaces === 0) info.style.display = "block";
 	
 				// document.querySelector(".bg").style.backgroundPosition = document.querySelector("#_drawing").getBoundingClientRect().height + "px";
 	
