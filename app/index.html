@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="FaceMatch">
+<html lang="en">
 
 	<head>
 
@@ -26,10 +26,17 @@
 
 		<link rel="stylesheet" href="/app/css/style.css">
 
-		<script src="/app/bower_components/angular/angular.min.js"></script>
+		<!-- <script src="/app/bower_components/angular/angular.min.js"></script>
 		<script src="/app/bower_components/angular-route/angular-route.min.js"></script>
+		<script src="/app/js/libs/createjs/preloadjs-0.6.2.min.js"></script>
 		<script src="/app/js/app.js"></script>
-		<script> var host = "facematch.gq"; host == window.location.host && "https:" != window.location.protocol && (window.location.protocol = "https"); </script>
+		<script> var host = "facematch.gq"; host == window.location.host && "https:" != window.location.protocol && (window.location.protocol = "https"); </script> -->
+
+		<script src="/js/libs/createjs/preloadjs-0.6.2.min.js"></script>
+		<script src="/js/app.js"></script>
+		<script>
+			window.onload = brfv4Example.start;
+		</script>
 
 		<title ng-bind="'FaceMatch &mdash; ' + title">FaceMatch</title>
 
@@ -37,7 +44,20 @@
 
 	<body>
 
-		<ng-view></ng-view>
+		<div id="_wrapper">
+
+			<div class="bg"></div>
+
+			<div id="_content">
+				<video  id="_webcam"></video>
+				<canvas id="_imageData"></canvas>
+				<canvas id="_faceSub"></canvas>
+				<canvas id="_t3d"></canvas>
+				<canvas id="_f3d"></canvas>
+				<canvas id="_drawing"></canvas>
+			</div>
+
+		</div>
 
 	</body>
 
