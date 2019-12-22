@@ -22,6 +22,10 @@ Then, serve the `index.html` file.
 
 For the backend, simply run the `app.py` file using Python from the `backend` folder.
 
+## 👥 Contributors
+
+[![Profile pictures of contributors on GitHub](https://services.anandchowdhary.now.sh/api/github-contributors?repo=c-r-e-a-t-e/facematch)](https://github.com/c-r-e-a-t-e/facematch/graphs/contributors)
+
 ## 📄 License
 
 - Code: [MIT](/LICENSE)
